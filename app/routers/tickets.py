@@ -65,3 +65,41 @@ def cambiar_estado(
     db.commit()
 
     return {"mensaje": f"Estado actualizado a {nuevo_estado}"}
+
+# 🔹 Listar tickets
+@router.get("/", response_model=list[TicketResponse])
+def listar_tickets(
+    db: Session = Depends(get_db),
+    current_user: Usuario = Security(get_current_user, scopes=["tickets:ver_propios"])
+):
+    if current_user.rol == "admin":
+        return db.query(Ticket).all()
+
+    return db.query(Ticket).filter(
+        (Ticket.id_solicitante == current_user.id_usuario) |
+        (Ticket.id_responsable == current_user.id_usuario) |
+        (Ticket.id_asignado == current_user.id_usuario)
+    ).all()
+
+
+# 🔹 Obtener ticket por ID
+@router.get("/{id_ticket}", response_model=TicketResponse)
+def obtener_ticket(
+    id_ticket: int,
+    db: Session = Depends(get_db),
+    current_user: Usuario = Security(get_current_user, scopes=["tickets:ver_propios"])
+):
+    ticket = db.query(Ticket).filter(Ticket.id_ticket == id_ticket).first()
+
+    if not ticket:
+        raise HTTPException(status_code=404, detail="Ticket no encontrado")
+
+    if current_user.rol != "admin":
+        if (
+            ticket.id_solicitante != current_user.id_usuario and
+            ticket.id_responsable != current_user.id_usuario and
+            ticket.id_asignado != current_user.id_usuario
+        ):
+            raise HTTPException(status_code=403, detail="No tienes acceso a este ticket")
+
+    return ticket
