@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Security
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 
@@ -6,12 +6,17 @@ from app.core.database import get_db
 from app.models.usuario import Usuario
 from app.schemas.usuario import UsuarioCreate, UsuarioResponse
 from app.auth.security import hash_password
+from app.auth.dependencies import get_current_user
 
 router = APIRouter(prefix="/usuarios", tags=["Usuarios"])
 
+
 @router.post("/", response_model=UsuarioResponse)
-def crear_usuario(usuario: UsuarioCreate, db: Session = Depends(get_db)):
-    
+def crear_usuario(
+    usuario: UsuarioCreate,
+    db: Session = Depends(get_db),
+    current_user: Usuario = Security(get_current_user, scopes=["usuarios:gestionar"])
+):
     nuevo = Usuario(
         nombre=usuario.nombre,
         correo=usuario.correo,
