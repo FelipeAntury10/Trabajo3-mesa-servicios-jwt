@@ -28,7 +28,7 @@ La API permite:
 
 * Usuarios
 * Tickets
-* (Pendiente por equipo: Laboratorios y Servicios)
+* Laboratorios y Servicios
 
 ### Arquitectura
 
