@@ -15,7 +15,7 @@ router = APIRouter(prefix="/usuarios", tags=["Usuarios"])
 def crear_usuario(
     usuario: UsuarioCreate,
     db: Session = Depends(get_db),
-    current_user: Usuario = Security(get_current_user, scopes=["usuarios:gestionar"])
+    
 ):
     nuevo = Usuario(
         nombre=usuario.nombre,
