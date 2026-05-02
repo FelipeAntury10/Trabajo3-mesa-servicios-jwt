@@ -6,10 +6,10 @@
 * **Integrantes:**
 
   * Juan Felipe Antury Bermeo
-  * [Nombre Compañero 1]
+  * Juan david restrepo quintero 
   * [Nombre Compañero 2]
-* **Asignatura:** [Nombre de la asignatura]
-* **Fecha:** [Fecha de entrega]
+  *Asignatura: Aplicaciones y servicios web
+  *Fecha: 01/05/2026
 
 ---
 
@@ -60,9 +60,8 @@ pip install -r requirements.txt
 ### Archivo `.env`
 
 ```env
-DATABASE_URL=postgresql://usuario:password@localhost:5432/jwt_grupo_1
-SECRET_KEY=clave_secreta
-ALGORITHM=HS256
+DATABASE_URL=postgresql://postgres:1234@localhost:5432/jwt_grupo_1 SECRET_KEY=clave_secreta
+ALGORITHM=HS256 
 ACCESS_TOKEN_EXPIRE_MINUTES=30
 ```
 
@@ -70,6 +69,9 @@ ACCESS_TOKEN_EXPIRE_MINUTES=30
 ---
 
 ## 4. Configuración de Base de Datos
+
+CREATE DATABASE jwt_grupo_1;
+CREATE SCHEMA jwt_grupo_1;
 
 * Motor: PostgreSQL
 * Schema: `jwt_grupo_1`
