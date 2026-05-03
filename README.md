@@ -62,7 +62,9 @@ pip install -r requirements.txt
 ### Archivo `.env`
 
 ```env
-DATABASE_URL=postgresql://postgres:1234@localhost:5432/jwt_grupo_1 SECRET_KEY=clave_secreta
+
+DATABASE_URL="postgresql://admin:admin@190.248.28.132:3010/dbapps"
+SECRET_KEY=clave_secreta
 ALGORITHM=HS256 
 ACCESS_TOKEN_EXPIRE_MINUTES=30
 ```
