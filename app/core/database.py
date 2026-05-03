@@ -7,6 +7,11 @@ load_dotenv()
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
+if not DATABASE_URL:
+    raise ValueError("DATABASE_URL no está definida")
+
+print("DATABASE_URL:", DATABASE_URL)
+
 engine = create_engine(
     DATABASE_URL,
     connect_args={"options": "-csearch_path=jwt_grupo_1"}
