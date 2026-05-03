@@ -7,9 +7,10 @@
 
   * Juan Felipe Antury Bermeo
   * Juan david restrepo quintero 
-  * [Nombre Compañero 2]
 
   *Asignatura: Aplicaciones y servicios web
+
+
   *Fecha: 01/05/2026
 
 ---
@@ -72,8 +73,8 @@ ACCESS_TOKEN_EXPIRE_MINUTES=30
 ## 4. Configuración de Base de Datos
 
 
-CREATE DATABASE jwt_grupo_1;
-CREATE SCHEMA jwt_grupo_1;
+* CREATE DATABASE jwt_grupo_1;
+* CREATE SCHEMA jwt_grupo_1;
 
 
 * Motor: PostgreSQL
